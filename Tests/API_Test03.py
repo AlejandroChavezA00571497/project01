@@ -45,31 +45,45 @@ def get_auth_header(token):
     return{"Authorization" : "Bearer " + token}
 
 
-def search_for_artist(token, artist_name):
+
+
+
+
+
+
+
+def search_for_playlist(token, playlist_name):
     url = "https://api.spotify.com/v1/search"
     headers = get_auth_header(token)
-    query = f"?q={artist_name}&type=artist&limit=1"
+    query = f"?q={playlist_name}&type=playlist&limit=1"
 
     query_url = url + query
 
     result = get(query_url, headers = headers)
-    json_result = json.loads(result.content)["artists"]["items"]
-    if len(json_result) == 0:
-        print("No artist with this name found...")
+    json_result_playlist = json.loads(result.content)["playlists"]["items"]
+    if len(json_result_playlist) == 0:
+        print("No playlist with this name found...")
         return None
     
-    return json_result[0]
+    #pprint(json_result_playlist)
+    return json_result_playlist[0]
 
 
-def get_songs_by_artists(token, artist_id):
-    url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?country=CO"
+
+
+def get_songs_in_playlist(token, artist_id):
+    url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
     headers = get_auth_header(token)
     result = get(url, headers = headers)
-    json_result = json.loads(result.content)["tracks"]
+    json_result = json.loads(result.content)["tracks"]["items"]
     #pprint(json_result)
     return json_result
 
 
+
+
+
+'''
 def get_song_features(token, artist_id):
     url = f"https://api.spotify.com/v1/artists/{artist_id}/top-tracks?country=CO"
     headers = get_auth_header(token)
@@ -77,17 +91,37 @@ def get_song_features(token, artist_id):
     json_result = json.loads(result.content)["tracks"]
     #pprint(json_result)
     return json_result
+'''
+
+
 
 
 token = get_token()
-result = search_for_artist(token, "Bad Bunny")
-artist_id = result["id"]
-songs = get_songs_by_artists(token, artist_id)
-song_list = []
+result = search_for_playlist(token, "Top 50: Global")
+playlist_id = result["id"]
+songs = get_songs_in_playlist(token, playlist_id)
+#song_list = []
+
+
 
 
 
 
 for idx, song in enumerate(songs):
     #song_list = song_list.append(song)
-    print(f"{idx + 1}. {song['name']}")    
+    print(f'{idx + 1}. {song["track"]["name"]}')    
+
+
+
+'''
+APUNTES:
+
+Ya funciona para sacar los nombres de las canciones de una playist, en este caso para sacar los de Top 50: Global.
+La función get_songs_in_playlist es donde se hace todo el desmadre de ir pidiendo los objetos dentro de la respuesta json del request con el url: https://api.spotify.com/v1/playlists/{playlist_id}.
+
+
+Queda pendiente ver cómo pasar todos esos nombres a una lista que después pueda ser usada para pasar los nombres de canciones a la API de Genius.
+Igual considerar que ya con la estructura que está podríamos pedir los ids de las canciones, en lugar del nombre, en caso de que Genius requiera que le pasemos los IDs.
+'''
+
+
