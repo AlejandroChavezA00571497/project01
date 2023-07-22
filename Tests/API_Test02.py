@@ -9,15 +9,21 @@ from requests import post, get
 #pip install requests
 import json
 from pprint import pprint
+from ids import id
+from ids import secret
 
 
 
 load_dotenv()
 
-client_id = os.getenv("client_id")
-client_secret = os.getenv("client_secret")
+client_id = id
+client_secret = secret
 
-#print(client_id, client_secret)
+# client_id = os.getenv("client_id")
+# client_secret = os.getenv("client_secret")
+
+
+print(client_id, client_secret)
 
 
 #CLIENT CREDENTIALS WORKFLOW (No se acceden a datos de usuario ni se controla el Spotify del usuario, solo se accede a los datos de Spotify)

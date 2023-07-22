@@ -9,15 +9,21 @@ from requests import post, get
 #pip install requests
 import json
 from pprint import pprint
-
+from ids import id
+from ids import secret
 
 
 load_dotenv()
 
-client_id = os.getenv("client_id")
-client_secret = os.getenv("client_secret")
+# Jaime: Agregué un archivo py llamado ids con mi client_id y client_secret y los importé porque no pude llamarlos con el os.getenv :'C
 
-#print(client_id, client_secret)
+client_id = id
+client_secret = secret
+
+# client_id = os.getenv("client_id")
+# client_secret = os.getenv("client_secret")
+
+# print(client_id, client_secret)
 
 
 #CLIENT CREDENTIALS WORKFLOW (No se acceden a datos de usuario ni se controla el Spotify del usuario, solo se accede a los datos de Spotify)
@@ -41,14 +47,9 @@ def get_token():
     return token
 
 
+
 def get_auth_header(token):
     return{"Authorization" : "Bearer " + token}
-
-
-
-
-
-
 
 
 
@@ -65,7 +66,7 @@ def search_for_playlist(token, playlist_name):
         print("No playlist with this name found...")
         return None
     
-    #pprint(json_result_playlist)
+    # pprint(json_result_playlist)
     return json_result_playlist[0]
 
 
