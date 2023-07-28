@@ -48,6 +48,8 @@ As well as all previoulsy created csv files in order to make an analysis of Audi
 
 The main files for this project; spotify_and_features.ipynb, lyrics.ipynb and statistical_analysis.ipynb, as well as ids.py reside within the Final Codes directory, which itself contains an output directory, that has the csv files used for transmiting the data from file to file. On the level of the FinalCodes directory there's also the Tests Directory, which contains multiple .ipynb and .py files used for testing in the development of the final codes.
 
+Link to our presentation:
+https://www.canva.com/design/DAFpsfSW694/e1nSP021VSqxYlaTuSYgmQ/edit?analyticsCorrelationId=711a136f-d283-4aa8-9951-2945b39f5b94
 
 References for the development of the project are:
 
