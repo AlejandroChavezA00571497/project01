@@ -5,6 +5,8 @@ Project 01 for the Tec de Monterrey Data Analysis Bootcamp
 
 Python scripts that take data from the Spotify and Genius APIs, as well as multiple libraries in order to create an analysis of the most popular songs from 2019 to 2022, according to the respective Spotify Playlists. This information is then processed and used to create a statistical analysis, with scatter and bar plots, as well as linear regression plots.
 
+NOTE: Run the code in the following order:
+
 The first script, spotify_and_features.ipynb, uses the following libraries:
 from dotenv import load_dotenv
 import pandas as pd
